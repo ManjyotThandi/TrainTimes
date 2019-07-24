@@ -52,7 +52,7 @@ $("#submit").on("click", function (event) {
 
 database.ref("/Trains").on("child_added", function (snapshot) {
     var currentTime = moment().format("hh:mm")
-    var firstTrainConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+    var firstTrainConverted = moment(snapshot.val().Starting, "HH:mm").subtract(1, "years");
     var diff = moment().diff(moment(firstTrainConverted), "minutes");
     var tRemainder = diff % snapshot.val().Freq
     var minutesUntill = snapshot.val().Freq - tRemainder
